@@ -1,0 +1,21 @@
+{
+  "name": "desafio-jr-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thiagosgdev/desafio-jr-1.git",
+  "author": "Thiago Santos Gonçalves <thiagosgdev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "jest": "^27.3.1",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "tsc": "^2.0.3",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {},
+  "scripts": {
+    "test": "jest --passWithNoTests --silent --noStackTrace  --runInBand"
+  }
+}
