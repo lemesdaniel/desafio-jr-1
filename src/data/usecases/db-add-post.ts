@@ -1,0 +1,13 @@
+import { PostModel } from "../../domain/model/post";
+import { AddPost, AddPostParams } from "../../domain/usecase/add-todo";
+import { AddPostRepository } from "../protocols/add-post-repository";
+
+export class DbAddPost implements AddPost {
+
+    constructor(private readonly addPostRepository: AddPostRepository){}
+
+    async add(data: AddPostParams): Promise<PostModel>{
+        await this.addPostRepository.add(data);
+        return null;
+    }
+}
