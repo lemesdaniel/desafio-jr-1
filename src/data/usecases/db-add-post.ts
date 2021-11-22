@@ -7,7 +7,7 @@ export class DbAddPost implements AddPost {
     constructor(private readonly addPostRepository: AddPostRepository){}
 
     async add(data: AddPostParams): Promise<PostModel>{
-        await this.addPostRepository.add(data);
-        return null;
+        const post = await this.addPostRepository.add(data);
+        return post;
     }
 }
