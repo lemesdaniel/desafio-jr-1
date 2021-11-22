@@ -44,10 +44,16 @@ const makeSut = (): SutTypes => {
 }
 
 describe("Db Add Post", () => {
-    test("Should AddPostRepository with the correct values", async() => {
+    test("Should call AddPostRepository with the correct values", async() => {
         const { sut, addPostRepositoryStub } = makeSut();
         const addSpy = jest.spyOn(addPostRepositoryStub, "add");
         await sut.add(mockAddPostParams());
         expect(addSpy).toHaveBeenCalledWith(mockAddPostParams());
+    });
+
+    test("Should return the add Post on AddPostRepository success", async() => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        expect(post).toHaveProperty("id");
     });
 });
