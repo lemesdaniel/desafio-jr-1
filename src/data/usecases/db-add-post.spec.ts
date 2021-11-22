@@ -56,4 +56,11 @@ describe("Db Add Post", () => {
         const post = await sut.add(mockAddPostParams());
         expect(post).toHaveProperty("id");
     });
+
+    test("Should throw if AddPostRepository with throws", async() => {
+        const { sut, addPostRepositoryStub } = makeSut();
+        jest.spyOn(addPostRepositoryStub, "add").mockReturnValueOnce(Promise.reject(new Error()));
+        const promise = sut.add(mockAddPostParams());
+        await expect(promise).rejects.toThrow();
+    });
 });
