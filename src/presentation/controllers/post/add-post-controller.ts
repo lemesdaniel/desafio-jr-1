@@ -7,13 +7,21 @@ export class AddPostController implements Controller {
         private readonly addPost: AddPost
     ){}
     async handle(request: HttpRequest): Promise<HttpResponse> {
-        const { title, description, body} = request.body;
-        const post = await this.addPost.add({title, description, body});
-        if(post){
+        try{
+            const { title, description, body} = request.body;
+            const post = await this.addPost.add({title, description, body});
+            if(post){
+                return {
+                    status: 201,
+                    body: post
+                }
+            }
+        }catch(error){
             return {
-                status: 201,
-                body: post
+                status: 500,
+                body: error
             }
         }
+        
     }
 }
