@@ -1,4 +1,4 @@
-import { AddPostParams } from "domain/usecase/add-todo";
+import { AddPostParams } from "@/domain/usecase/add-post";
 import { connection } from "../helper/typeorm-helper";
 import { PostPostgresRepository } from "./post-postgres-repository";
 

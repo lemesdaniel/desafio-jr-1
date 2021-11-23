@@ -1,4 +1,4 @@
-import { AddPost } from "@/domain/usecase/add-todo";
+import { AddPost } from "@/domain/usecase/add-post";
 import { Controller } from "@/presentation/protocols/controller";
 import { HttpRequest, HttpResponse } from "@/presentation/protocols/http";
 

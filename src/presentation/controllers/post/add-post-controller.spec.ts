@@ -1,5 +1,5 @@
 import { mockAddPost } from "@/domain/test/mock-post";
-import { AddPost } from "@/domain/usecase/add-todo";
+import { AddPost } from "@/domain/usecase/add-post";
 import { HttpRequest } from "@/presentation/protocols/http";
 import { AddPostController } from "./add-post-controller";
 

@@ -1,6 +1,6 @@
 import { Post } from "@/domain/entities/post";
 import { PostModel } from "@/domain/model/post";
-import { AddPost, AddPostParams } from "@/domain/usecase/add-todo";
+import { AddPost, AddPostParams } from "@/domain/usecase/add-post";
 import { getRepository, Repository } from "typeorm";
 
 export class PostPostgresRepository implements AddPost {  

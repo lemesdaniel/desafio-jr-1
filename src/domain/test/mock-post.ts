@@ -1,5 +1,6 @@
 import { PostModel } from "../model/post";
-import { AddPost, AddPostParams } from "../usecase/add-todo";
+import { AddPost, AddPostParams } from "../usecase/add-post";
+import { UpdatePostParams } from "../usecase/update-post";
 
 export const mockPostModel = (): PostModel => ({
     id: "any_id",
@@ -24,3 +25,18 @@ export const mockAddPost = (): AddPost => {
     }
     return new AddPostStub;
 }
+
+export const mockUpdatePostParams = (): UpdatePostParams => ({
+    id: "any_id",
+    title: "other_title",
+    body: "other_body",
+});
+
+export const mockUpdatedPostModel = (): PostModel => ({
+    id: "any_id",
+    title: "other_title",
+    description: "any_description",
+    body: "other_body",
+    created_at: new Date,
+    updated_at: new Date,
+});
