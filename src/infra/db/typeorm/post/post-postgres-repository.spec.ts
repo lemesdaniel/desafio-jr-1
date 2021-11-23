@@ -1,3 +1,4 @@
+import { mockUpdatePostParams } from "@/domain/test/mock-post";
 import { AddPostParams } from "@/domain/usecase/add-post";
 import { connection } from "../helper/typeorm-helper";
 import { PostPostgresRepository } from "./post-postgres-repository";
@@ -37,5 +38,14 @@ describe("Post Postgres Repository", () => {
         const { sut } = makeSut();
         const post = await sut.add(mockAddPostParams());
         expect(post).toHaveProperty("id");
+    });
+
+    test("Should call update() with the correct value", async () => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        post.title = "other_title";
+        const updateSpy = jest.spyOn(sut, "update");
+        await sut.update(post);
+        expect(updateSpy).toHaveBeenCalledWith(post);
     });
 });
