@@ -1,0 +1,13 @@
+{
+    "type": "postgres",
+    "port": 5432,
+    "host": "localhost",
+    "username": "postgres",
+    "password": "lucy123",
+    "database": "devhall_challenge01",
+    "migrations": ["./src/infra/db/typeorm/migrations/*.ts"],
+    "entities": ["./src/domain/entities/*.ts"],
+    "cli": {
+        "migrationsDir": "./src/infra/db/typeorm/migrations"
+    }
+}

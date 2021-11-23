@@ -1,10 +1,17 @@
 {
     "compilerOptions": {
-        "outDir": "dist",
-        "module": "commonjs",
         "target": "es2019",
+        "module": "commonjs",
+        "allowJs": true,
         "esModuleInterop": true,
-        "sourceMap": true,
+        "skipLibCheck": true,
+        "outDir": "./dist",
         "baseUrl": "src",
-    }
+        "paths": {
+            "@/*": ["*"]
+        },
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true
+    },
+    "include": ["src"]
 }

@@ -1,8 +1,12 @@
-import { PostModel } from "../../domain/model/post";
-import { AddPostParams } from "../../domain/usecase/add-todo";
+import { PostModel } from "domain/model/post";
+import { AddPostParams } from "domain/usecase/add-todo";
 import { AddPostRepository } from "../protocols/add-post-repository";
 import { DbAddPost } from "./db-add-post";
 
+type SutTypes = {
+    sut: DbAddPost,
+    addPostRepositoryStub: AddPostRepository
+}
 
 const mockAddPostRepository = (): AddPostRepository => {
     class AddPostRepositoryStub implements AddPostRepository {
@@ -28,11 +32,6 @@ const mockAddPostParams = (): AddPostParams => ({
     description: "any_description",
     body: "any_body",
 });
-
-type SutTypes = {
-    sut: DbAddPost,
-    addPostRepositoryStub: AddPostRepository
-}
 
 const makeSut = (): SutTypes => {
     const addPostRepositoryStub = mockAddPostRepository();
