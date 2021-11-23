@@ -1,12 +1,13 @@
-import { connection } from "@/infra/db/typeorm/helper/typeorm-helper";
+import "express-async-errors";
 import "dotenv/config";
 import express from "express";
 import "reflect-metadata";
+import setupRoutes from "./routes";
 
 const app = express();
 
-connection.create();
-
 app.use(express.json());
+
+setupRoutes(app);
 
 export default app;

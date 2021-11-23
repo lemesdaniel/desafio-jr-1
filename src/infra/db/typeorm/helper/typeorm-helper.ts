@@ -3,19 +3,16 @@ import {
     getConnection,
     getConnectionOptions,
     Connection,
+    QueryRunner,
+    getConnectionManager,
 } from "typeorm";
+
+
 
 export const connection = {
     async create(): Promise<Connection> {
-        const defaultOptions = await getConnectionOptions();
-        return await createConnection(
-            Object.assign(defaultOptions, {
-                database:
-                    process.env.NODE_ENV === "develop"
-                        ? "develop-challenge01"
-                        : defaultOptions.database,
-            }),
-        );
+        const connectionOptions = await getConnectionOptions();
+        return await createConnection(connectionOptions);
     },
 
     async close() {
@@ -30,4 +27,16 @@ export const connection = {
             await repository.query(`DELETE FROM ${entity.tableName}`);
         });
     },
-};
+    async init() {
+        let connection: Connection;
+        let queryRunner: QueryRunner;
+    
+         if (!getConnectionManager().has('default')) {
+            const connectionOptions = await getConnectionOptions();
+            connection = await createConnection(connectionOptions);
+          } else {
+            connection = getConnection();
+          }
+        queryRunner = connection.createQueryRunner(); 
+    }
+}

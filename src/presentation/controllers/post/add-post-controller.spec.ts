@@ -1,5 +1,5 @@
 import { mockAddPost } from "@/domain/test/mock-post";
-import { AddPost, AddPostParams } from "@/domain/usecase/add-todo";
+import { AddPost } from "@/domain/usecase/add-todo";
 import { HttpRequest } from "@/presentation/protocols/http";
 import { AddPostController } from "./add-post-controller";
 
@@ -25,7 +25,7 @@ const makeSut = (): SutTypes => {
     }
 }
 
-describe("Add Post Controller", () => {
+describe("Post Controller", () => {
     test("Should call AddPost with the correct values", async () => {
         const { sut, addPostStub } = makeSut();
         const addSpy = jest.spyOn(addPostStub, "add");

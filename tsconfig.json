@@ -11,7 +11,8 @@
             "@/*": ["*"]
         },
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
-    },
-    "include": ["src"]
+        "emitDecoratorMetadata": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true
+    }
 }
