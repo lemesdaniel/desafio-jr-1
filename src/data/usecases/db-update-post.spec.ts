@@ -28,4 +28,10 @@ describe("Db Update Post", () => {
         const post = await sut.update(mockUpdatePostParams());
         expect(post).toHaveProperty("id");
     });
+    test("Should return null on UpdatePostRepository fail", async () => {
+        const { sut, updatePostRepositoryStub} = makeSut();
+        jest.spyOn(updatePostRepositoryStub, "update").mockReturnValueOnce(Promise.resolve(null));
+        const post = await sut.update(mockUpdatePostParams());
+        expect(post).toBeNull();
+    });
 });
