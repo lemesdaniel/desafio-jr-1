@@ -22,5 +22,10 @@ describe("Db Update Post", () => {
         const updateSpy = jest.spyOn(updatePostRepositoryStub, "update");
         await sut.update(mockUpdatePostParams());
         expect(updateSpy).toHaveBeenCalledWith(mockUpdatePostParams());
-    })
+    });
+    test("Should return the updated Post on UpdatePostRepository success", async () => {
+        const { sut } = makeSut();
+        const post = await sut.update(mockUpdatePostParams());
+        expect(post).toHaveProperty("id");
+    });
 });
