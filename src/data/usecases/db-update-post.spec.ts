@@ -34,4 +34,10 @@ describe("Db Update Post", () => {
         const post = await sut.update(mockUpdatePostParams());
         expect(post).toBeNull();
     });
+    test("Should throw if UpdatePostRepository throws", async () => {
+        const { sut, updatePostRepositoryStub} = makeSut();
+        jest.spyOn(updatePostRepositoryStub, "update").mockReturnValueOnce(Promise.reject(new Error));
+        const post = sut.update(mockUpdatePostParams());
+        await expect(post).rejects.toThrow();    
+    });
 });
