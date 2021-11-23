@@ -36,4 +36,10 @@ describe("Add Post Controller", () => {
             body: "any_body"
         })
     });
+
+    test("Should return 201 on AddPost success", async () => {
+        const { sut } = makeSut();
+        const response = await sut.handle(makeFakeRequest());
+        expect(response.status).toBe(201);
+    });
 });
