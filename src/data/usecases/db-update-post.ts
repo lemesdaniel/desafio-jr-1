@@ -10,6 +10,9 @@ export class DbUpdatePost implements UpdatePost {
 
     async update(data: UpdatePostParams): Promise<PostModel> {
         const post = await this.updatePostRepository.update(data);
-        return post;
+        if(post){
+            return post;
+        }
+        return null;
     }
 }
