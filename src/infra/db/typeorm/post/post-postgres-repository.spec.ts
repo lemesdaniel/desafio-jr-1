@@ -48,4 +48,11 @@ describe("Post Postgres Repository", () => {
         await sut.update(post);
         expect(updateSpy).toHaveBeenCalledWith(post);
     });
+    test("Should return updated post on update() success", async () => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        post.title = "other_title";
+        const updatedPost = await sut.update(post);
+        expect(updatedPost).toHaveProperty("id");
+    });
 });
