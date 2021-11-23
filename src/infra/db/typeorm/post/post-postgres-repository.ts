@@ -22,7 +22,7 @@ export class PostPostgresRepository implements AddPost, UpdatePost {
     async update(data: UpdatePostParams):Promise<PostModel>{
         const post = await this.repository.findOne(data.id);
         const updatedPost = await this.repository.save({...post, ...data});
-        return null;
+        return updatedPost;
     }
 
 }   
