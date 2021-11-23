@@ -9,6 +9,11 @@ export class AddPostController implements Controller {
     async handle(request: HttpRequest): Promise<HttpResponse> {
         const { title, description, body} = request.body;
         const post = await this.addPost.add({title, description, body});
-        return null;
+        if(post){
+            return {
+                status: 201,
+                body: post
+            }
+        }
     }
 }
