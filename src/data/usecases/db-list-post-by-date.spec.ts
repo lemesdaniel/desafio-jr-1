@@ -17,7 +17,7 @@ const makeSut = (): SutTypes => {
     }
 }
 
-describe("Db List Posts by Date", () => {
+describe("Db List Post by Date", () => {
     test("Should call ListPostByDateRepository with the correct values", async () => {
         const { sut, listPostByDateStub } = makeSut();
         const listSpy = jest.spyOn(listPostByDateStub, "list");
@@ -25,4 +25,12 @@ describe("Db List Posts by Date", () => {
         await sut.list(date);
         expect(listSpy).toHaveBeenCalledWith(date);
     })
+    
+    test("Should call ListPostByDateRepository with the correct values", async () => {
+        const { sut } = makeSut();
+        const date = mockListPostByDateParams();
+        const posts = await sut.list(date);
+        expect(posts.length).toBeGreaterThanOrEqual(2);
+    })
+    
 });
