@@ -78,5 +78,9 @@ describe("Post Postgres Repository", () => {
         expect(posts.length).toBe(2);
     });
 
- 
+    test("Should return null if list() fails", async () => {
+        const { sut } = makeSut();
+        const posts = await sut.list(mockListPostByDateParams());
+        expect(posts).toBeNull();
+    });
 });
