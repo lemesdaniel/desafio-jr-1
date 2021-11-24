@@ -33,4 +33,11 @@ describe("Db List Post by Date", () => {
         expect(posts.length).toBeGreaterThanOrEqual(2);
     })
     
+    test("Should return null if ListPostByDateRepository don't find any post", async () => {
+        const { sut, listPostByDateStub } = makeSut();
+        jest.spyOn(listPostByDateStub, "list").mockReturnValueOnce(Promise.resolve(null));
+        const date = mockListPostByDateParams();
+        const posts = await sut.list(date);
+        expect(posts).toBeNull();
+    })
 });
