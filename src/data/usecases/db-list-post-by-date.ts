@@ -8,7 +8,10 @@ export class DbListPostByDate implements ListPostByDateRepository {
     constructor(private readonly listPostByDateRepository: ListPostByDateRepository){}
     async list(data: ListPostByDateParams): Promise<PostModel[]>{
         const posts = await this.listPostByDateRepository.list(data);
-        return posts;
+        if(posts){
+            return posts;
+        }
+        return null;
     }
 
 }
