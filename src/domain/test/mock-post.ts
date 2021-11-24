@@ -1,5 +1,6 @@
 import { PostModel } from "../model/post";
 import { AddPost, AddPostParams } from "../usecase/add-post";
+import { ListPostByDateParams } from "../usecase/list-post-by-date";
 import { UpdatePost, UpdatePostParams } from "../usecase/update-post";
 
 export const mockPostModel = (): PostModel => ({
@@ -50,3 +51,8 @@ export const mockUpdatedPostModel = (): PostModel => ({
     created_at: new Date,
     updated_at: new Date,
 });
+
+export const mockListPostByDateParams = (): ListPostByDateParams => ({
+    start_date: new Date,
+    end_date: new Date
+})

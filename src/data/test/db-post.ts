@@ -1,8 +1,10 @@
 import { PostModel } from "@/domain/model/post";
 import { mockPostModel, mockUpdatedPostModel } from "@/domain/test/mock-post";
 import { AddPostParams } from "@/domain/usecase/add-post";
+import { ListPostByDate, ListPostByDateParams } from "@/domain/usecase/list-post-by-date";
 import { UpdatePostParams } from "@/domain/usecase/update-post";
 import { AddPostRepository } from "../protocols/add-post-repository";
+import { ListPostByDateRepository } from "../protocols/list-post-by-date-repository";
 import { UpdatePostRepository } from "../protocols/update-post-repository";
 
 
@@ -23,4 +25,13 @@ export const mockUpdatePostRepository = (): UpdatePostRepository => {
         }
     }
     return new UpdatePostRepositoryStub;
+}
+
+export const mockListPostByDateRepository = (): ListPostByDateRepository => {
+    class ListPostByDateRepositoryStub implements ListPostByDateRepository {
+        async list(data: ListPostByDateParams): Promise<PostModel[]>{
+            return Promise.resolve([mockPostModel(), mockPostModel()])
+        }
+    }
+    return new ListPostByDateRepositoryStub;
 }
