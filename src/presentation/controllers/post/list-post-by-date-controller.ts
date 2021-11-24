@@ -11,7 +11,13 @@ export class ListPostByDateController implements Controller {
     ){}
     async handle(request: HttpRequest): Promise<HttpResponse> {
         const { start_date, end_date } = request.body;
-        await this.listPostByDate.list({start_date, end_date});        
+        const posts = await this.listPostByDate.list({start_date, end_date});        
+        if(posts.length >= 1){
+            return { 
+                status: 200,
+                body: posts
+            }
+        }
         return null;
     }
 }
