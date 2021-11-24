@@ -1,4 +1,4 @@
-import { mockUpdatePostParams } from "@/domain/test/mock-post";
+import { mockListPostByDateParams, mockUpdatePostParams } from "@/domain/test/mock-post";
 import { AddPostParams } from "@/domain/usecase/add-post";
 import { connection } from "../helper/typeorm-helper";
 import { PostPostgresRepository } from "./post-postgres-repository";
@@ -62,4 +62,13 @@ describe("Post Postgres Repository", () => {
         const updatedPost = await sut.update(mockUpdatePostParams());
         expect(updatedPost).toBeNull;
     });
+
+    test("Should call list() with the correct value", async () => {
+        const { sut } = makeSut();
+        const listSpy = jest.spyOn(sut, "list");
+        const dates = mockListPostByDateParams();
+        await sut.list(dates);
+        expect(listSpy).toHaveBeenCalledWith(dates);
+    });
+    
 });
