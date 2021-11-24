@@ -55,4 +55,9 @@ describe("Post Postgres Repository", () => {
         const updatedPost = await sut.update(post);
         expect(updatedPost).toHaveProperty("id");
     });
+    test("Should return null if update() fail", async () => {
+        const { sut } = makeSut();
+        const updatedPost = await sut.update(mockUpdatePostParams());
+        expect(updatedPost).toBeNull;
+    });
 });

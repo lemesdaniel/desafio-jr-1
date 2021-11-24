@@ -27,7 +27,7 @@ export const mockAddPost = (): AddPost => {
 }
 
 export const mockUpdatePostParams = (): UpdatePostParams => ({
-    id: "any_id",
+    id: "a12d24fe-7d31-47cd-9755-ddee987965d4",
     title: "other_title",
     description: "any_description",
     body: "other_body",
