@@ -1,6 +1,6 @@
 import { PostModel } from "../model/post";
 import { AddPost, AddPostParams } from "../usecase/add-post";
-import { ListPostByDateParams } from "../usecase/list-post-by-date";
+import { ListPostByDate, ListPostByDateParams } from "../usecase/list-post-by-date";
 import { UpdatePost, UpdatePostParams } from "../usecase/update-post";
 
 export const mockPostModel = (): PostModel => ({
@@ -56,3 +56,12 @@ export const mockListPostByDateParams = (): ListPostByDateParams => ({
     start_date: new Date("2021-11-20"),
     end_date: new Date("2021-11-26")
 })
+
+export const mockListPostByDate = (): ListPostByDate => {
+    class ListPostByDateStub implements ListPostByDate {
+        async list(date: ListPostByDateParams): Promise<PostModel[]> {
+            return Promise.resolve([mockPostModel(), mockPostModel()]);
+        }
+    }
+    return new ListPostByDateStub;
+}
