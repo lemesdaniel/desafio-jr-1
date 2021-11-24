@@ -66,9 +66,17 @@ describe("Post Postgres Repository", () => {
     test("Should call list() with the correct value", async () => {
         const { sut } = makeSut();
         const listSpy = jest.spyOn(sut, "list");
-        const dates = mockListPostByDateParams();
-        await sut.list(dates);
-        expect(listSpy).toHaveBeenCalledWith(dates);
+        await sut.list(mockListPostByDateParams());
+        expect(listSpy).toHaveBeenCalledWith(mockListPostByDateParams());
     });
-    
+
+    test("Should return the posts on list() success", async () => {
+        const { sut } = makeSut();
+        await sut.add(mockAddPostParams())
+        await sut.add(mockAddPostParams())
+        const posts = await sut.list(mockListPostByDateParams());
+        expect(posts.length).toBe(2);
+    });
+
+ 
 });

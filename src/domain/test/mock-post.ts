@@ -53,6 +53,6 @@ export const mockUpdatedPostModel = (): PostModel => ({
 });
 
 export const mockListPostByDateParams = (): ListPostByDateParams => ({
-    start_date: new Date,
-    end_date: new Date
+    start_date: new Date("2021-11-20"),
+    end_date: new Date("2021-11-26")
 })

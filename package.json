@@ -31,6 +31,6 @@
   },
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only  --ignore-watch node_modules --respawn src/main/server.ts",
-    "test": "jest --passWithNoTests --silent --noStackTrace  --runInBand"
+    "test": "jest --passWithNoTests --noStackTrace  --runInBand --silent"
   }
 }
