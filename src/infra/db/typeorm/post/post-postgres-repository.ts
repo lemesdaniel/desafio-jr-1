@@ -34,6 +34,9 @@ export class PostPostgresRepository implements AddPost, UpdatePost, ListPostByDa
         const posts = await this.repository.find({
             created_at: Between(start_date, end_date)
         });
-        return posts;
+        if (posts.length >= 1){
+            return posts;
+        }
+        return null;
     }
 }   
