@@ -1,6 +1,6 @@
 import { PostModel } from "../model/post";
 import { AddPost, AddPostParams } from "../usecase/add-post";
-import { UpdatePostParams } from "../usecase/update-post";
+import { UpdatePost, UpdatePostParams } from "../usecase/update-post";
 
 export const mockPostModel = (): PostModel => ({
     id: "any_id",
@@ -24,6 +24,15 @@ export const mockAddPost = (): AddPost => {
         }
     }
     return new AddPostStub;
+}
+
+export const mockUpdatePost = (): UpdatePost => {
+    class UpdatePostStub implements UpdatePost {
+        async update(data: UpdatePostParams): Promise<PostModel> {
+            return Promise.resolve(mockPostModel());
+        }
+    }
+    return new UpdatePostStub;
 }
 
 export const mockUpdatePostParams = (): UpdatePostParams => ({
