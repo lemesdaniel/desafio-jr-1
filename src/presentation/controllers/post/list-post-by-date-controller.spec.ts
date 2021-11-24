@@ -29,4 +29,10 @@ describe("List Post by Date Controller", () => {
         await sut.handle(makeFakeRequest());
         expect(listSpy).toHaveBeenCalledWith(mockListPostByDateParams())
     });
+
+    test("Should return 200 on ListPost success", async () => {
+        const { sut } = makeSut();
+        const response =await sut.handle(makeFakeRequest());
+        expect(response.status).toBe(200);
+    });
 });
