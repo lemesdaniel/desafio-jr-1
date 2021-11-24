@@ -9,11 +9,22 @@ export class UpdatePostController implements Controller{
     constructor(private readonly updatePost: UpdatePost){}
 
     async handle(request: HttpRequest): Promise<HttpResponse> {
-        const post = await this.updatePost.update(request.body);
-        if(post){
+        try{
+            const post = await this.updatePost.update(request.body);
+            if(post){
+                return {
+                    status: 200,
+                    body: post
+                }
+            }
             return {
-                status: 200,
-                body: post
+                status: 204,
+                body: "No data found."
+            }
+        }catch(error){
+            return {
+                status: 500,
+                body: error
             }
         }
     }
