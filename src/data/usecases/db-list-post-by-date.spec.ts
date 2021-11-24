@@ -39,5 +39,13 @@ describe("Db List Post by Date", () => {
         const date = mockListPostByDateParams();
         const posts = await sut.list(date);
         expect(posts).toBeNull();
+    });
+
+    test("Should throw if ListPostByDateRepository throws", async () => {
+        const { sut, listPostByDateStub } = makeSut();
+        jest.spyOn(listPostByDateStub, "list").mockReturnValueOnce(Promise.reject(new Error()));
+        const date = mockListPostByDateParams();
+        const posts = sut.list(date);
+        await expect(posts).rejects.toThrow();
     })
 });
