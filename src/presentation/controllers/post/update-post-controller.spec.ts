@@ -4,7 +4,7 @@ import { UpdatePostController } from "./update-post-controller";
 
 const makeFakeRequest = () => ({
     body: {
-        id: "any_id",
+        id: "b33583fb-afff-4d62-95fc-1a5dbc2faf3c",
         title: "any_title",
         description: "any_description",
         body: "any_body"
@@ -31,10 +31,16 @@ describe("Update Post Controller", () => {
         const updateSpy = jest.spyOn(updatePostStub, "update");
         await sut.handle(makeFakeRequest());
         expect(updateSpy).toHaveBeenCalledWith({
-            id: "any_id",
+            id: "b33583fb-afff-4d62-95fc-1a5dbc2faf3c",
             title: "any_title",
             description: "any_description",
             body: "any_body"
         });
+    });  
+
+    test("Should return 200 on UpdatePost success", async () => {
+        const { sut } = makeSut();
+        const post = await sut.handle(makeFakeRequest());
+        expect(post.status).toBe(200);
     });  
 });
