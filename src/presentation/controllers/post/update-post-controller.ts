@@ -10,6 +10,11 @@ export class UpdatePostController implements Controller{
 
     async handle(request: HttpRequest): Promise<HttpResponse> {
         const post = await this.updatePost.update(request.body);
-        return null;
+        if(post){
+            return {
+                status: 200,
+                body: post
+            }
+        }
     }
 }
