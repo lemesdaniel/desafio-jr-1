@@ -43,4 +43,11 @@ describe("Update Post Controller", () => {
         const post = await sut.handle(makeFakeRequest());
         expect(post.status).toBe(200);
     });  
+
+    test("Should return 204 on UpdatePost fail", async () => {
+        const { sut, updatePostStub } = makeSut();
+        jest.spyOn(updatePostStub, "update").mockReturnValueOnce(Promise.resolve(null));
+        const post = await sut.handle(makeFakeRequest());
+        expect(post.status).toBe(204);
+    });  
 });
