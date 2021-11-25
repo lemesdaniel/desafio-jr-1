@@ -4,6 +4,7 @@ import { AddPostParams } from "@/domain/usecase/add-post";
 import { ListPostByDate, ListPostByDateParams } from "@/domain/usecase/list-post-by-date";
 import { UpdatePostParams } from "@/domain/usecase/update-post";
 import { AddPostRepository } from "../protocols/add-post-repository";
+import { DeletePostRepository } from "../protocols/delete-post-repository";
 import { ListPostByDateRepository } from "../protocols/list-post-by-date-repository";
 import { UpdatePostRepository } from "../protocols/update-post-repository";
 
@@ -34,4 +35,13 @@ export const mockListPostByDateRepository = (): ListPostByDateRepository => {
         }
     }
     return new ListPostByDateRepositoryStub;
+}
+
+export const mockDeletePostRepository = (): DeletePostRepository => {
+    class DeletePostRepositoryStub implements DeletePostRepository {
+        async delete(id: string): Promise<void> {
+            return Promise.resolve();
+        }
+    }
+    return new DeletePostRepositoryStub;
 }
