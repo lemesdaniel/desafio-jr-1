@@ -103,8 +103,8 @@ describe("Post Postgres Repository", () => {
     test("Should call find() with the correct values", async () => {
         const { sut } = makeSut();
         const post = await sut.add(mockAddPostParams());
-        const findSpy = jest.spyOn(sut, "delete");
-        await sut.delete(post.id);
+        const findSpy = jest.spyOn(sut, "find");
+        await sut.find(post.id);
         expect(findSpy).toHaveBeenCalledWith(post.id);
     });
 });
