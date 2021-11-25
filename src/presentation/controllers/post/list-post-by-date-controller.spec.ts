@@ -23,16 +23,23 @@ const makeSut = ():SutTypes => {
 }
 
 describe("List Post by Date Controller", () => {
-    test("Should call ListPost with the correct value", async () => {
+    test("Should call ListPostByDate with the correct value", async () => {
         const { sut, listPostByDateSut } = makeSut();
         const listSpy = jest.spyOn(listPostByDateSut, "list");
         await sut.handle(makeFakeRequest());
         expect(listSpy).toHaveBeenCalledWith(mockListPostByDateParams())
     });
 
-    test("Should return 200 on ListPost success", async () => {
+    test("Should return 200 on ListPostByDate success", async () => {
         const { sut } = makeSut();
-        const response =await sut.handle(makeFakeRequest());
+        const response = await sut.handle(makeFakeRequest());
         expect(response.status).toBe(200);
+    });
+
+    test("Should return 500 if ListPostByDate throws", async () => {
+        const { sut, listPostByDateSut } = makeSut();
+        jest.spyOn(listPostByDateSut, "list").mockReturnValueOnce(Promise.reject(new Error()));
+        const response = await sut.handle(makeFakeRequest());
+        await expect(response.status).toBe(500)
     });
 });
