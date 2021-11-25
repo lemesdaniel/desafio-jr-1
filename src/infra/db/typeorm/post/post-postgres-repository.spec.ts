@@ -114,4 +114,10 @@ describe("Post Postgres Repository", () => {
         const postFound = await sut.find(post.id);
         expect(postFound).toHaveProperty("id");
     });
+
+    test("Should return null if find() fails", async () => {
+        const { sut } = makeSut();
+        const posts = await sut.find("9d985841-597f-4399-847c-c07edc317752");
+        expect(posts).toBeNull();
+    });
 });
