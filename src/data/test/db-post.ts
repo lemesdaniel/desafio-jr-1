@@ -5,6 +5,7 @@ import { ListPostByDate, ListPostByDateParams } from "@/domain/usecase/list-post
 import { UpdatePostParams } from "@/domain/usecase/update-post";
 import { AddPostRepository } from "../protocols/add-post-repository";
 import { DeletePostRepository } from "../protocols/delete-post-repository";
+import { FindPostByIdRepository } from "../protocols/find-post-by-id-repository";
 import { ListPostByDateRepository } from "../protocols/list-post-by-date-repository";
 import { UpdatePostRepository } from "../protocols/update-post-repository";
 
@@ -44,4 +45,13 @@ export const mockDeletePostRepository = (): DeletePostRepository => {
         }
     }
     return new DeletePostRepositoryStub;
+}
+
+export const mockFindPostByIdRepository = (): FindPostByIdRepository => {
+    class FindPostByIdRepositoryStub implements FindPostByIdRepository {
+        async find(id: string): Promise<PostModel>{
+            return Promise.resolve(mockPostModel());
+        }
+    }
+    return new FindPostByIdRepositoryStub;
 }
