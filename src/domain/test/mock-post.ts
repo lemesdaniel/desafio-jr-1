@@ -1,6 +1,7 @@
 import { PostModel } from "../model/post";
 import { AddPost, AddPostParams } from "../usecase/add-post";
 import { DeletePost } from "../usecase/delete-post";
+import { FindPostById } from "../usecase/find-post-by-id";
 import { ListPostByDate, ListPostByDateParams } from "../usecase/list-post-by-date";
 import { UpdatePost, UpdatePostParams } from "../usecase/update-post";
 
@@ -74,4 +75,13 @@ export const mockDeletePost = (): DeletePost => {
         }
     }
     return new DeletePostStub;
+}
+
+export const mockFindPostById = (): FindPostById => {
+    class FindPostByIdStub implements FindPostById {
+        async find(id: string): Promise<PostModel>{
+            return Promise.resolve(mockPostModel());
+        }
+    }
+    return new FindPostByIdStub;
 }
