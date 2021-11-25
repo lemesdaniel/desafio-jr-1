@@ -8,17 +8,25 @@ export class FindPostByIdController implements Controller{
         private readonly findPostById: FindPostById
     ){}
     async handle(request: HttpRequest):Promise<HttpResponse> {
-        const { id } = request.body;
-        const post = await this.findPostById.find(id);
-        if(post){
+        try{
+            const { id } = request.body;
+            const post = await this.findPostById.find(id);
+            if(post){
+                return {
+                    status: 200,
+                    body: post
+                }
+            }
             return {
-                status: 200,
-                body: post
+                status: 204,
+                body: "No post found"
+            }
+        }catch(error){
+            return {
+                status: 500,
+                body: "Server error"
             }
         }
-        return {
-            status: 204,
-            body: "No post found"
-        }
+        
     }
 }
