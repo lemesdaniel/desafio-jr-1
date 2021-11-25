@@ -2,11 +2,12 @@ import { Post } from "@/domain/entities/post";
 import { PostModel } from "@/domain/model/post";
 import { AddPost, AddPostParams } from "@/domain/usecase/add-post";
 import { DeletePost } from "@/domain/usecase/delete-post";
+import { FindPostById } from "@/domain/usecase/find-post-by-id";
 import { ListPostByDate, ListPostByDateParams } from "@/domain/usecase/list-post-by-date";
 import { UpdatePost, UpdatePostParams } from "@/domain/usecase/update-post";
 import { Between, getRepository, Repository } from "typeorm";
 
-export class PostPostgresRepository implements AddPost, UpdatePost, ListPostByDate, DeletePost{  
+export class PostPostgresRepository implements AddPost, UpdatePost, ListPostByDate, DeletePost, FindPostById{ 
     
     private repository: Repository<Post>
     
@@ -44,4 +45,10 @@ export class PostPostgresRepository implements AddPost, UpdatePost, ListPostByDa
     async delete(id: string): Promise<void> {
         await this.repository.delete(id);
     }
+
+    async find(id: string): Promise<PostModel>{
+        await this.find(id);
+        return null;
+    }
+
 }   
