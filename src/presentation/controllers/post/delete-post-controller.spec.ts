@@ -30,4 +30,10 @@ describe("Delete Post Controller", () => {
         await sut.handle(makeFakeRequest());
         expect(deleteSpy).toHaveBeenCalledWith("9c69d887-ad35-4059-ae1f-75d77e69bb4e");
     });
+
+    test("Should return 200 on when DeletePost succefully called", async () => {
+        const { sut } = makeSut();
+        const response = await sut.handle(makeFakeRequest());
+        expect(response.status).toBe(200);
+    });
 });
