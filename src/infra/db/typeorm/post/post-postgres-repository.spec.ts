@@ -91,4 +91,12 @@ describe("Post Postgres Repository", () => {
         await sut.delete(post.id);
         expect(deleteSpy).toHaveBeenCalledWith(post.id);
     });
+
+    test("Should delete a post on delete() success", async () => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        await sut.delete(post.id);        
+        const isDeleted = await sut.list(mockListPostByDateParams());
+        expect(isDeleted).toBeFalsy();
+    });
 });
