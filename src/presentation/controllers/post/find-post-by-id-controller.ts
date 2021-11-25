@@ -9,10 +9,12 @@ export class FindPostByIdController implements Controller{
     ){}
     async handle(request: HttpRequest):Promise<HttpResponse> {
         const { id } = request.body;
-        await this.findPostById.find(id);
-        return {
-            status: 200,
-            body: ""
+        const post = await this.findPostById.find(id);
+        if(post){
+            return {
+                status: 200,
+                body: ""
+            }
         }
     }
 }
