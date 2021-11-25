@@ -23,4 +23,10 @@ describe("Db List Post By Id", () => {
         await sut.find("any_id");
         expect(findSpy).toHaveBeenCalledWith("any_id")
     });
+
+    test("Should return a Post on FindPostByIdRepository success", async () => {
+        const { sut } = makeSut();
+        const post = await sut.find("any_id");
+        expect(post).toHaveProperty("id");
+    });
 });
