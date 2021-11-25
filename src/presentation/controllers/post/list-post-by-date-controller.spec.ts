@@ -42,4 +42,11 @@ describe("List Post by Date Controller", () => {
         const response = await sut.handle(makeFakeRequest());
         await expect(response.status).toBe(500)
     });
+
+    test("Should return 204 if ListPostByDate doesn't find a Post", async () => {
+        const { sut, listPostByDateSut } = makeSut();
+        jest.spyOn(listPostByDateSut, "list").mockReturnValueOnce(Promise.resolve([]));
+        const response = await sut.handle(makeFakeRequest());
+        await expect(response.status).toBe(204)
+    });
 });
