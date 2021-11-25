@@ -19,6 +19,10 @@ export class ListPostByDateController implements Controller {
                     body: posts
                 }
             }
+            return {
+                status: 204,
+                body: "No post found between those dates"
+            }
         }catch(error){
             return {
                 status: 500,
