@@ -30,5 +30,12 @@ describe("Find Post By Id Controller", () => {
         const findSpy = jest.spyOn(findPostByIdStub, "find");
         await sut.handle(makeFakeRequest());
         expect(findSpy).toHaveBeenCalledWith("any_id");
-    })
+    });
+
+    test("Should return 200 on FindPostById success", async () => {
+        const { sut } = makeSut();
+        const response = await sut.handle(makeFakeRequest());
+        expect(response.status).toBe(200);
+    });
+
 });

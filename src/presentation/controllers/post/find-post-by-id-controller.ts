@@ -13,7 +13,7 @@ export class FindPostByIdController implements Controller{
         if(post){
             return {
                 status: 200,
-                body: ""
+                body: post
             }
         }
     }
