@@ -38,4 +38,10 @@ describe("Find Post By Id Controller", () => {
         expect(response.status).toBe(200);
     });
 
+    test("Should return 204 on FindPostById fail", async () => {
+        const { sut, findPostByIdStub } = makeSut();
+        jest.spyOn(findPostByIdStub, "find").mockReturnValueOnce(Promise.resolve(null));
+        const response = await sut.handle(makeFakeRequest());
+        expect(response.status).toBe(204);
+    });
 });
