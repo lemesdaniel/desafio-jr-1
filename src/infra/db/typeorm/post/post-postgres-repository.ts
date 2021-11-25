@@ -47,7 +47,7 @@ export class PostPostgresRepository implements AddPost, UpdatePost, ListPostByDa
     }
 
     async find(id: string): Promise<PostModel>{
-        await this.find(id);
+        await this.repository.findOne(id);
         return null;
     }
 
