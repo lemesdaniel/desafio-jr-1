@@ -99,4 +99,12 @@ describe("Post Postgres Repository", () => {
         const isDeleted = await sut.list(mockListPostByDateParams());
         expect(isDeleted).toBeFalsy();
     });
+
+    test("Should call find() with the correct values", async () => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        const findSpy = jest.spyOn(sut, "delete");
+        await sut.delete(post.id);
+        expect(findSpy).toHaveBeenCalledWith(post.id);
+    });
 });
