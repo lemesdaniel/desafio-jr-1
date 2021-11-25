@@ -16,5 +16,9 @@ export class FindPostByIdController implements Controller{
                 body: post
             }
         }
+        return {
+            status: 204,
+            body: "No post found"
+        }
     }
 }
