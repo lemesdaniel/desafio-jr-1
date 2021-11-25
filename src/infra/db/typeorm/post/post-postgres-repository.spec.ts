@@ -107,4 +107,11 @@ describe("Post Postgres Repository", () => {
         await sut.find(post.id);
         expect(findSpy).toHaveBeenCalledWith(post.id);
     });
+
+    test("Should call find() with the correct values", async () => {
+        const { sut } = makeSut();
+        const post = await sut.add(mockAddPostParams());
+        const postFound = await sut.find(post.id);
+        expect(postFound).toHaveProperty("id");
+    });
 });
