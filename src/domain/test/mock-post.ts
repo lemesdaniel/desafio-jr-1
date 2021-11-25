@@ -1,5 +1,6 @@
 import { PostModel } from "../model/post";
 import { AddPost, AddPostParams } from "../usecase/add-post";
+import { DeletePost } from "../usecase/delete-post";
 import { ListPostByDate, ListPostByDateParams } from "../usecase/list-post-by-date";
 import { UpdatePost, UpdatePostParams } from "../usecase/update-post";
 
@@ -64,4 +65,13 @@ export const mockListPostByDate = (): ListPostByDate => {
         }
     }
     return new ListPostByDateStub;
+}
+
+export const mockDeletePost = (): DeletePost => {
+    class DeletePostStub implements DeletePost {
+        async delete(id: string): Promise<void>{
+            return Promise.resolve();
+        }
+    }
+    return new DeletePostStub;
 }
