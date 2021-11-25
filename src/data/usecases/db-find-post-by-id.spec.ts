@@ -36,4 +36,11 @@ describe("Db List Post By Id", () => {
         const post = await sut.find("any_id");
         expect(post).toBeNull();
     });
+
+    test("Should return null on FindPostByIdRepository fail", async () => {
+        const { sut, findPostByIdRepositoryStub } = makeSut();
+        jest.spyOn(findPostByIdRepositoryStub, "find").mockReturnValueOnce(Promise.reject(new Error()));
+        const promise = sut.find("any_id");
+        await expect(promise).rejects.toThrow();
+    });
 });
