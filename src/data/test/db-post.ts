@@ -49,7 +49,7 @@ export const mockDeletePostRepository = (): DeletePostRepository => {
 
 export const mockFindPostByIdRepository = (): FindPostByIdRepository => {
     class FindPostByIdRepositoryStub implements FindPostByIdRepository {
-        async find(id: string): Promise<PostModel>{
+        async findById(id: string): Promise<PostModel>{
             return Promise.resolve(mockPostModel());
         }
     }

@@ -4,8 +4,7 @@ import { HttpRequest } from "@/presentation/protocols/http";
 import { FindPostByIdController } from "./find-post-by-id-controller";
 
 const makeFakeRequest = ():HttpRequest => ({
-    body: {
-        //id: "12f242d3-c561-4803-a11d-fd4cca11bbf0"
+    params: {
         id: "any_id"
     }
 })
@@ -27,7 +26,7 @@ const makeSut = (): SutTypes => {
 describe("Find Post By Id Controller", () => {
     test("Should call FindPostById with the correct values", async () => {
         const { sut, findPostByIdStub } = makeSut();
-        const findSpy = jest.spyOn(findPostByIdStub, "find");
+        const findSpy = jest.spyOn(findPostByIdStub, "findById");
         await sut.handle(makeFakeRequest());
         expect(findSpy).toHaveBeenCalledWith("any_id");
     });
@@ -40,14 +39,14 @@ describe("Find Post By Id Controller", () => {
 
     test("Should return 204 on FindPostById fail", async () => {
         const { sut, findPostByIdStub } = makeSut();
-        jest.spyOn(findPostByIdStub, "find").mockReturnValueOnce(Promise.resolve(null));
+        jest.spyOn(findPostByIdStub, "findById").mockReturnValueOnce(Promise.resolve(null));
         const response = await sut.handle(makeFakeRequest());
         expect(response.status).toBe(204);
     });
 
     test("Should return 500 if FindPostById throws", async () => {
         const { sut, findPostByIdStub } = makeSut();
-        jest.spyOn(findPostByIdStub, "find").mockReturnValueOnce(Promise.reject(new Error()));
+        jest.spyOn(findPostByIdStub, "findById").mockReturnValueOnce(Promise.reject(new Error()));
         const response = await sut.handle(makeFakeRequest());
         expect(response.status).toBe(500);
     });

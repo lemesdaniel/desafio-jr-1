@@ -100,24 +100,24 @@ describe("Post Postgres Repository", () => {
         expect(isDeleted).toBeFalsy();
     });
 
-    test("Should call find() with the correct values", async () => {
+    test("Should call findById() with the correct values", async () => {
         const { sut } = makeSut();
         const post = await sut.add(mockAddPostParams());
-        const findSpy = jest.spyOn(sut, "find");
-        await sut.find(post.id);
+        const findSpy = jest.spyOn(sut, "findById");
+        await sut.findById(post.id);
         expect(findSpy).toHaveBeenCalledWith(post.id);
     });
 
-    test("Should call find() with the correct values", async () => {
+    test("Should call findById() with the correct values", async () => {
         const { sut } = makeSut();
         const post = await sut.add(mockAddPostParams());
-        const postFound = await sut.find(post.id);
+        const postFound = await sut.findById(post.id);
         expect(postFound).toHaveProperty("id");
     });
 
-    test("Should return null if find() fails", async () => {
+    test("Should return null if findById() fails", async () => {
         const { sut } = makeSut();
-        const posts = await sut.find("9d985841-597f-4399-847c-c07edc317752");
+        const posts = await sut.findById("9d985841-597f-4399-847c-c07edc317752");
         expect(posts).toBeNull();
     });
 });

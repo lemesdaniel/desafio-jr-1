@@ -19,28 +19,28 @@ const makeSut = (): SutTypes => {
 describe("Db List Post By Id", () => {
     test("Should call FindPostByIdRepository with the correct values", async () => {
         const { sut, findPostByIdRepositoryStub } = makeSut();
-        const findSpy = jest.spyOn(findPostByIdRepositoryStub, "find");
-        await sut.find("any_id");
+        const findSpy = jest.spyOn(findPostByIdRepositoryStub, "findById");
+        await sut.findById("any_id");
         expect(findSpy).toHaveBeenCalledWith("any_id")
     });
 
     test("Should return a Post on FindPostByIdRepository success", async () => {
         const { sut } = makeSut();
-        const post = await sut.find("any_id");
+        const post = await sut.findById("any_id");
         expect(post).toHaveProperty("id");
     });
 
     test("Should return null on FindPostByIdRepository fail", async () => {
         const { sut, findPostByIdRepositoryStub } = makeSut();
-        jest.spyOn(findPostByIdRepositoryStub, "find").mockReturnValueOnce(Promise.resolve(null));
-        const post = await sut.find("any_id");
+        jest.spyOn(findPostByIdRepositoryStub, "findById").mockReturnValueOnce(Promise.resolve(null));
+        const post = await sut.findById("any_id");
         expect(post).toBeNull();
     });
 
     test("Should return null on FindPostByIdRepository fail", async () => {
         const { sut, findPostByIdRepositoryStub } = makeSut();
-        jest.spyOn(findPostByIdRepositoryStub, "find").mockReturnValueOnce(Promise.reject(new Error()));
-        const promise = sut.find("any_id");
+        jest.spyOn(findPostByIdRepositoryStub, "findById").mockReturnValueOnce(Promise.reject(new Error()));
+        const promise = sut.findById("any_id");
         await expect(promise).rejects.toThrow();
     });
 });

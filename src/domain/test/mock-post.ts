@@ -56,7 +56,7 @@ export const mockUpdatedPostModel = (): PostModel => ({
 
 export const mockListPostByDateParams = (): ListPostByDateParams => ({
     start_date: new Date("2021-11-20"),
-    end_date: new Date("2021-11-26")
+    end_date: new Date("2022-11-26")
 })
 
 export const mockListPostByDate = (): ListPostByDate => {
@@ -79,7 +79,7 @@ export const mockDeletePost = (): DeletePost => {
 
 export const mockFindPostById = (): FindPostById => {
     class FindPostByIdStub implements FindPostById {
-        async find(id: string): Promise<PostModel>{
+        async findById(id: string): Promise<PostModel>{
             return Promise.resolve(mockPostModel());
         }
     }
