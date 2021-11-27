@@ -1,0 +1,36 @@
+{
+  "name": "desafio-jr-1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/thiagosgdev/desafio-jr-1.git",
+  "author": "Thiago Santos Gonçalves <thiagosgdev@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.0.3",
+    "@types/node": "^16.11.9",
+    "@types/supertest": "^2.0.11",
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6",
+    "ts-jest": "^27.0.7",
+    "ts-node": "^10.4.0",
+    "ts-node-dev": "^1.1.8",
+    "tsc": "^2.0.3",
+    "tsconfig-paths": "^3.12.0",
+    "typescript": "^4.5.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "fs": "^0.0.1-security",
+    "pg": "^8.7.1",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.41",
+    "uuid": "^8.3.2"
+  },
+  "scripts": {
+    "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only  --ignore-watch node_modules --respawn src/main/server.ts",
+    "test": "jest --passWithNoTests --noStackTrace  --runInBand --silent"
+  }
+}
