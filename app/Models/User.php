@@ -42,8 +42,5 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isMinor(){
-
-        return $this->age < 18 ? true : false;
-    }
+   
 }

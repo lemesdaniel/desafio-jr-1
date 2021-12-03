@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+
 class postController extends Controller
 {
     /**
@@ -13,7 +14,10 @@ class postController extends Controller
      */
     public function index()
     {
-        //
+        $existingPosts = Post::paginate(5);
+     
+        return response()->json($existingPosts, 200);
+
     }
 
     /**
@@ -41,8 +45,8 @@ class postController extends Controller
         $newPost->body = $request->Post['body'];
 
         $newPost->save();
-
-        return $newPost;
+        
+        return response()->json($newPost, 201);
     }
 
     /**
@@ -56,9 +60,9 @@ class postController extends Controller
         $existingPost = Post::find($id);
 
         if($existingPost){
-            return $existingPost;
+            return response()->json($existingPost, 200);
         }else{
-            return "Post not found";
+            return response()->json("Post not found", 404);
         }
     }
 
@@ -91,9 +95,9 @@ class postController extends Controller
 
         $existingPost->save();
 
-        return $existingPost;
+        return response()->json($existingPost, 200);
         }else{
-            return "Post not found";
+            return response()->json("Post not found", 404);
         }
     }
 
@@ -110,9 +114,9 @@ class postController extends Controller
         if($existingPost){
             $existingPost->delete();
             
-            return "Post successfully deleted";
+            return response()->json("Post successfully deleted", 200);
         }else{
-            return "Post not found";
+            return response()->json("Post not found", 404);
         }
     }
 }

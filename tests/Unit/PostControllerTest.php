@@ -9,6 +9,19 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 class PostControllerTest extends TestCase
 {
     use DatabaseMigrations;
+
+    /**
+     * A basic test example.
+     *
+     * @return void
+     */
+    public function test_index_route()
+    {
+        $response = $this->get('/api/my-posts');
+      
+        $response->assertStatus(200);
+    }
+
     /**
      * A basic test example.
      *
@@ -16,8 +29,10 @@ class PostControllerTest extends TestCase
      */
     public function test_store_post()
     {
-        $post = Post::create(['title'=>'Olá','description'=>'essa é uma descrição', 'body'=>'mUNDO']);
+        $post = [Post::factory()->create()];
         
-        $this->assertEquals('Olá', $post->title);
+        $this->post(route('post.store'), $post)
+         // ->assertStatus(201)
+    ->assertJson($post);
     }
 }
