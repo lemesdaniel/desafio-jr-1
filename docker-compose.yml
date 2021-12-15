@@ -1,0 +1,25 @@
+version: "3"
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=fastapi
+
+  api:
+    build: .
+    image: python
+    ports:
+      - 8000:8000
+    volumes:
+      - ./:/user/src/app
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=fastapi
+      - DATABASE_USERNAME=postgres
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+
