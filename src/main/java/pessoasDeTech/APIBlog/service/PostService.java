@@ -39,6 +39,15 @@ public class PostService {
 		return new PostDTO(post);
 	}
 	
+	
+	public void deleteById(Long id) {
+		repository.deleteById(id);
+	}
+	
+	
+	
+	
+	
 	@Transactional
 	private void copyDtoToEntity(PostDTO dto, Post entity) {
 		entity.setTitle(dto.getTitle());
@@ -46,5 +55,6 @@ public class PostService {
 		entity.setBody(dto.getBody());
 		entity.setCreatedAt(dto.getCreatedAt());
 	}
+
 	
 }
