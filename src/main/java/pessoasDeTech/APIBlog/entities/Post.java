@@ -12,13 +12,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "tb_post")
 public class Post implements Serializable {
@@ -28,8 +24,14 @@ public class Post implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(columnDefinition = "TEXT")
 	private String title;
+	
+	@Column(columnDefinition = "TEXT")
 	private String description;
+	
+	@Column(columnDefinition = "TEXT")
 	private String body;
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
