@@ -31,5 +31,20 @@ public class PostService {
 		return new PostDTO(entity);
 	}
 	
+	@Transactional
+	public PostDTO insert(PostDTO dto) {
+		Post post = new Post();
+		copyDtoToEntity(dto, post);
+		post = repository.save(post);
+		return new PostDTO(post);
+	}
+	
+	@Transactional
+	private void copyDtoToEntity(PostDTO dto, Post entity) {
+		entity.setTitle(dto.getTitle());
+		entity.setDescription(dto.getDescription());
+		entity.setBody(dto.getBody());
+		entity.setCreatedAt(dto.getCreatedAt());
+	}
 	
 }
