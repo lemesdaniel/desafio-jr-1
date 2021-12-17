@@ -1,6 +1,7 @@
 package pessoasDeTech.APIBlog.DTO;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,7 @@ public class PostDTO {
 	private String description;
 	private String body;
 	private Instant createdAt;
-	private Instant updatedAt;
+	private LocalDateTime updatedAt;
 	
 	public PostDTO(Post entity) {
 		this.id = entity.getId();

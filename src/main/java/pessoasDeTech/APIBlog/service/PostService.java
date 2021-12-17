@@ -18,7 +18,6 @@ import pessoasDeTech.APIBlog.repositories.PostRepository;
 
 @Service
 public class PostService {
-
 	@Autowired
 	private PostRepository repository;
 	
@@ -61,15 +60,12 @@ public class PostService {
 		}catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("ID Não Encontrado");
 		}
-		
 	}
-	
 	
 	private void copyDtoToEntity(PostDTO dto, Post entity) {
 		entity.setTitle(dto.getTitle());
 		entity.setDescription(dto.getDescription());
 		entity.setBody(dto.getBody());
-		entity.setCreatedAt(dto.getCreatedAt());
 	}
 
 	

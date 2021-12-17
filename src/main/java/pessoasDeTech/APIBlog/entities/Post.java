@@ -2,6 +2,7 @@ package pessoasDeTech.APIBlog.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,7 +39,7 @@ public class Post implements Serializable {
 	private Instant createdAt;
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-	private Instant updatedAt;
+	private LocalDateTime updatedAt;
 	
 	@PrePersist
 	public void prePersist() {
@@ -47,7 +48,7 @@ public class Post implements Serializable {
 	
 	@PreUpdate
 	public void preUpdate() {
-		updatedAt = Instant.now();
+		updatedAt = LocalDateTime.now();
 	}
 
 }
