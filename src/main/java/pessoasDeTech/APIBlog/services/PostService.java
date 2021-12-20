@@ -1,4 +1,4 @@
-package pessoasDeTech.APIBlog.service;
+package pessoasDeTech.APIBlog.services;
 
 import java.util.Optional;
 

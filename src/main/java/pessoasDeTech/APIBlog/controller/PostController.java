@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import pessoasDeTech.APIBlog.DTO.PostDTO;
-import pessoasDeTech.APIBlog.service.PostService;
+import pessoasDeTech.APIBlog.services.PostService;
 
 @RestController
 @RequestMapping(value = "/post")
@@ -30,7 +30,7 @@ public class PostController {
 	
 	@GetMapping
 	ResponseEntity<Page<PostDTO>> ListPaged(
-			@PageableDefault(sort = "createdAt", direction = Direction.DESC, page = 0, size = 10) Pageable pageable) {
+		@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable pageable) {
 		
 		Page<PostDTO> page = service.listPaged(pageable);
 		return ResponseEntity.ok().body(page);
@@ -60,7 +60,5 @@ public class PostController {
 		postDto = service.update(id, postDto);
 		return ResponseEntity.ok().body(postDto);
 	}
-	
-	//Arrumar o UPDATE_AT and CREATE_At//
 	
 }
