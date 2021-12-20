@@ -1,49 +1,43 @@
-# Desafio Back-End para desenvolvedores iniciantes
+# Desafio Pessoas de Tech.
 
-Esse é o nosso desafio para os deseja uma revisão/mentoria minha (@dlemesdaniel)
+Nesse desafio, utilizei:
 
-Como isso vai funcionar:
-- Isso é não é um processo seletivo.
-- Eu vou revisar e fazer um code review.
-- vou enviar um feedback com sugestão de estudos para a pessoa continuar o seu desenvolvimento.
-- Semanalmente eu vou pegar os pull requests que houverem aqui e vou chamar a pessoa que desenvolveu para marcar uma call onde vou revisar e enviar um feedback sobre o desafio.
+* Java
+* Spring Boot na versão 2.4.4.
+* Banco H2
+* Lombok
 
-O desafio deve ser escrito em php com qualquer framework ou sem o uso de algum.
+##	Os seguintes end-points foram implementados.
 
-# O Desafio
+- `GET /post` (Listar todos os Posts por ID)
+- `GET /post/data` (Listar todos os Post ordenado por Data)
+- `GET /post/{id}` (Acha os posts por id)
+- `POST /post` (Adiciona um novo post)
+- `DELETE /post/{id}` (Exclui post por ID)
+- `PUT /post/{id}` (Faz o update do post por id)
 
-Precisamos de uma API que sirva o Back-end de um blog. Essa API precisa ser capaz de:
+OBS => 
 
-- Criar um Post
-- Editar um Post
-- Deletar um Post
-- Listar os Posts de maneira paginada, permitindo filtro por data.
-- Obter informações de um Post por ID.
+Para adicionar um post, eu utilizei esse body como teste.
 
-A entidade `Post`, deve ter os seguintes campos:
+```json
+{
+    "title" : "Criando um Post na API",
+    "description" : "Hoje vamos criar um post em uma API de teste",
+    "body" : "Primeiro, você provavelmente deve usar o postman para fazer as requisições"
+}
+```
 
-- id -> Identificador do Post.
-- title -> Título do Post.
-- description -> Descrição do Post.
-- body -> Corpo do Post.
-- created_at -> Data de criação do Post.
-- updated_at -> Data de atualização do Post.
+Para fazer um update utilizei esse body como teste.
 
-Você pode utilizar qualquer banco, desde que ele seja [SQL](http://www.sqlcourse.com/intro.html).
+```json
+{
+    "title" : "Como fazer a bateria do celular durar mais!!!",
+    "description" : "Hoje vamos te ensinar como usar melhor o celular",
+    "body" : "Primeira dica: compre outro, celular velho só da problema."
+}
+```
 
-## Requisitos
 
-- Todas as respostas precisam ser retornadas no formato [JSON](https://www.json.org/json-en.html).
-- Crie um `README.md` com as informações de como usar sua aplicação. (como executar, quais são as rotas, etc)
 
-## Diferenciais
-
-- [Dockerize](https://www.docker.com/) sua aplicação.
-- Crie testes unitários para a sua aplicação.
-- Utilize os princípios SOLID em sua aplicação.
-
-## Como entregar o teste
-
-1. Faça um fork desse repositório.
-2. Resolva o desafio da melhor maneira que você puder.
-3. Envie um pull-request para análise do resultado.
+Não possui muita experiência com docker e com testes ainda estou estudando como funciona por isso não foi implementado.

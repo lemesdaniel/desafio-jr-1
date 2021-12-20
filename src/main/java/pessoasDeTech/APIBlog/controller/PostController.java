@@ -36,6 +36,14 @@ public class PostController {
 		return ResponseEntity.ok().body(page);
 	}
 	
+	@GetMapping(value = "/data")
+	ResponseEntity<Page<PostDTO>> ListData(
+		@PageableDefault(sort = "createdAt", direction = Direction.DESC, page = 0, size = 10) Pageable pageable) {
+		
+		Page<PostDTO> page = service.listPaged(pageable);
+		return ResponseEntity.ok().body(page);
+	}
+	
 	@GetMapping(value = "/{id}")
 	ResponseEntity<PostDTO> findById(@PathVariable Long id) {
 		PostDTO dto = service.findById(id);
